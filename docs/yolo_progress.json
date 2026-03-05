@@ -1,0 +1,1460 @@
+{
+  "agent": "YOLOLearningAgent",
+  "startedAt": "2026-03-03T23:42:44.029Z",
+  "intervalMinutes": 5,
+  "sessionsCompleted": 193,
+  "currentTopic": null,
+  "knowledgeBase": [
+    {
+      "id": 1,
+      "name": "YOLO Architecture",
+      "completedAt": "2026-03-02T23:30:43.951Z",
+      "content": {
+        "keyPoints": [
+          "Single-stage detector design",
+          "Backbone (CSPDarknet) → Neck → Head",
+          "Grid-based prediction system",
+          "Multi-scale feature maps"
+        ],
+        "codeExample": "# YOLO Model Structure\nmodel = YOLO('yolov8n.pt')\nresults = model('image.jpg')\n# Output: [boxes, confidences, class_ids]",
+        "resources": [
+          "https://docs.ultralytics.com",
+          "YOLOv8 Paper"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Anchor Boxes & IoU",
+      "completedAt": "2026-03-02T23:35:43.970Z",
+      "content": {
+        "keyPoints": [
+          "Anchor box clustering (K-means)",
+          "IoU (Intersection over Union)",
+          "CIoU, DIoU, SIoU loss variants",
+          "Anchor-free approaches in YOLOv8+"
+        ],
+        "formula": "IoU = Area(Intersection) / Area(Union)",
+        "resources": [
+          "IoU Loss Functions Paper"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Loss Functions",
+      "completedAt": "2026-03-02T23:40:43.976Z",
+      "content": {
+        "keyPoints": [
+          "Classification Loss (BCE)",
+          "Objectness Loss",
+          "Bounding Box Regression (CIoU)",
+          "Multi-task loss balancing"
+        ],
+        "formula": "Loss = λ₁*cls + λ₂*obj + λ₃*box",
+        "resources": [
+          "YOLO Loss Analysis"
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "name": "Data Augmentation",
+      "completedAt": "2026-03-02T23:45:43.990Z",
+      "content": {
+        "keyPoints": [
+          "Mosaic augmentation",
+          "MixUp blending",
+          "HSV color jitter",
+          "Random flip, scale, translate"
+        ],
+        "codeExample": "# Albumentations pipeline\ntransform = A.Compose([\n    A.Mosaic(p=0.5),\n    A.RandomResizedCrop(640, 640),\n    A.HorizontalFlip(p=0.5)\n])",
+        "resources": [
+          "Data Augmentation Guide"
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "name": "Model Optimization",
+      "completedAt": "2026-03-02T23:50:43.995Z",
+      "content": {
+        "keyPoints": [
+          "Pruning & Quantization",
+          "TensorRT acceleration",
+          "ONNX export",
+          "Knowledge distillation"
+        ],
+        "codeExample": "# Export to TensorRT\nmodel.export(format='engine', device=0)\n# 3-5x speedup on GPU",
+        "resources": [
+          "Optimization Guide"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "name": "Custom Dataset Training",
+      "completedAt": "2026-03-02T23:55:43.997Z",
+      "content": {
+        "keyPoints": [
+          "YOLO format annotations",
+          "Dataset YAML configuration",
+          "Transfer learning strategy",
+          "Hyperparameter tuning"
+        ],
+        "codeExample": "# Train custom model\nmodel.train(\n    data='custom.yaml',\n    epochs=100,\n    imgsz=640,\n    batch=16\n)",
+        "resources": [
+          "Custom Training Tutorial"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "name": "Real-time Deployment",
+      "completedAt": "2026-03-03T00:00:44.011Z",
+      "content": {
+        "keyPoints": [
+          "Edge device deployment (Jetson)",
+          "OpenVINO optimization",
+          "TensorRT inference",
+          "Pipeline optimization"
+        ],
+        "codeExample": "# Real-time inference\nresults = model(source=0, stream=True)\nfor r in results:\n    process(r)",
+        "resources": [
+          "Deployment Guide"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:05:44.024Z",
+      "content": {
+        "keyPoints": [
+          "Anchor-free detection",
+          "C2f module improvements",
+          "Task-aligned learning",
+          "Efficient architecture design"
+        ],
+        "comparison": {
+          "v8": "Anchor-free, C2f module",
+          "v9": "Programmable gradient information",
+          "v10": "Dual label assignment, efficiency"
+        },
+        "resources": [
+          "Latest YOLO Papers"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:10:44.034Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:15:44.046Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:20:44.060Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:25:44.064Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:30:44.079Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:35:44.089Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:40:44.092Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:45:44.108Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:50:44.113Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T00:55:44.129Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:00:44.145Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:05:44.154Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:10:44.158Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:15:44.161Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:20:44.171Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:25:44.179Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:30:44.190Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:35:44.204Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:40:44.211Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:45:44.226Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:50:44.233Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T01:55:44.242Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:00:44.245Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:05:44.256Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:10:44.266Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:15:44.268Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:20:44.275Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:25:44.290Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:30:44.291Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:35:44.296Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:40:44.299Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:45:44.300Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:50:44.308Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T02:55:44.312Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:00:44.323Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:05:44.335Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:10:44.337Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:15:44.347Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:20:44.348Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:25:44.358Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:30:44.368Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:35:44.383Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:40:44.386Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:45:44.396Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:50:44.412Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T03:55:44.416Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:00:44.421Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:05:44.433Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:10:44.436Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:15:44.448Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:20:44.455Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:25:44.463Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:30:44.474Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:35:44.483Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:40:44.489Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:45:44.492Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:50:44.501Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T04:55:44.511Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:00:44.512Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:05:44.520Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:10:44.531Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:15:44.541Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:20:44.542Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:25:44.542Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:30:44.546Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:35:44.553Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:40:44.565Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:45:44.579Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:50:44.583Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T05:55:44.585Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:00:44.587Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:05:44.595Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:10:44.600Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:15:44.611Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:20:44.620Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:25:44.621Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:30:44.631Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:35:44.644Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:40:44.658Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:45:44.661Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:50:44.673Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T06:55:44.687Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:00:44.695Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:05:44.709Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:10:44.723Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:15:44.733Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:20:44.745Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:25:44.751Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:30:44.752Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:35:44.752Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:40:44.754Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:45:44.764Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:50:44.779Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T07:55:44.794Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:00:44.797Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:05:44.800Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:10:44.808Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:15:44.818Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:20:44.818Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:25:44.820Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:30:44.829Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:35:44.831Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:40:44.834Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:45:44.838Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:50:44.842Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T08:55:44.845Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:00:44.856Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:05:44.868Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:10:44.874Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:15:44.881Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:20:44.883Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:25:44.884Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:30:44.898Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:35:44.911Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:40:44.915Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:45:44.920Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:50:44.921Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T09:55:44.922Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:00:44.935Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:05:44.949Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:10:44.957Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:15:44.970Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:20:44.971Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:25:44.984Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:30:44.996Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:35:45.007Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:40:45.014Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:45:45.028Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:50:45.037Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T10:55:45.052Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T11:00:45.058Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T11:05:45.070Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T11:10:45.081Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T11:15:45.084Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T11:20:45.095Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T11:25:45.102Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T11:30:45.118Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T11:35:45.118Z"
+    },
+    {
+      "id": 8,
+      "name": "YOLOv8/v9/v10 Features",
+      "completedAt": "2026-03-03T11:40:45.121Z"
+    },
+    {
+      "completedAt": "2026-03-03T15:50:39.681Z"
+    },
+    {
+      "completedAt": "2026-03-03T15:55:39.695Z"
+    },
+    {
+      "completedAt": "2026-03-03T16:00:39.707Z"
+    },
+    {
+      "completedAt": "2026-03-03T16:05:39.719Z"
+    },
+    {
+      "completedAt": "2026-03-03T16:10:39.726Z"
+    },
+    {
+      "completedAt": "2026-03-03T16:15:39.739Z"
+    },
+    {
+      "completedAt": "2026-03-03T16:20:39.739Z"
+    },
+    {
+      "completedAt": "2026-03-03T16:25:39.753Z"
+    },
+    {
+      "completedAt": "2026-03-03T16:30:39.760Z"
+    },
+    {
+      "completedAt": "2026-03-03T16:35:39.768Z"
+    },
+    {
+      "completedAt": "2026-03-03T16:40:39.769Z"
+    },
+    {
+      "completedAt": "2026-03-03T23:42:44.031Z"
+    },
+    {
+      "completedAt": "2026-03-03T23:47:44.051Z"
+    },
+    {
+      "completedAt": "2026-03-03T23:52:44.066Z"
+    },
+    {
+      "completedAt": "2026-03-03T23:57:44.072Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:02:44.076Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:07:44.085Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:12:44.090Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:17:44.104Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:22:44.117Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:27:44.127Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:32:44.134Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:37:44.149Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:42:44.160Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:47:44.172Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:52:44.174Z"
+    },
+    {
+      "completedAt": "2026-03-04T00:57:44.181Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:02:44.182Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:07:44.184Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:12:44.191Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:17:44.198Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:22:44.210Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:27:44.220Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:32:44.228Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:37:44.242Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:42:44.250Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:47:44.253Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:52:44.258Z"
+    },
+    {
+      "completedAt": "2026-03-04T01:57:44.263Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:02:44.264Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:07:44.269Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:12:44.282Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:17:44.286Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:22:44.286Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:27:44.298Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:32:44.309Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:37:44.314Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:42:44.330Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:47:44.336Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:52:44.345Z"
+    },
+    {
+      "completedAt": "2026-03-04T02:57:44.358Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:02:44.373Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:07:44.378Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:12:44.390Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:17:44.395Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:22:44.405Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:27:44.413Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:32:44.425Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:37:44.431Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:42:44.432Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:47:44.447Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:52:44.454Z"
+    },
+    {
+      "completedAt": "2026-03-04T03:57:44.456Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:02:44.462Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:07:44.472Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:12:44.476Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:17:44.483Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:22:44.490Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:27:44.494Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:32:44.496Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:37:44.499Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:42:44.502Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:47:44.516Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:52:44.523Z"
+    },
+    {
+      "completedAt": "2026-03-04T04:57:44.536Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:02:44.541Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:07:44.555Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:12:44.568Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:17:44.583Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:22:44.591Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:27:44.598Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:32:44.598Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:37:44.608Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:42:44.616Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:47:44.629Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:52:44.644Z"
+    },
+    {
+      "completedAt": "2026-03-04T05:57:44.648Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:02:44.653Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:07:44.658Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:12:44.670Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:17:44.684Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:22:44.699Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:27:44.699Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:32:44.704Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:37:44.713Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:42:44.718Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:47:44.721Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:52:44.728Z"
+    },
+    {
+      "completedAt": "2026-03-04T06:57:44.740Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:02:44.751Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:07:44.760Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:12:44.771Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:17:44.779Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:22:44.788Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:27:44.799Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:32:44.800Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:37:44.812Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:42:44.824Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:47:44.826Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:52:44.826Z"
+    },
+    {
+      "completedAt": "2026-03-04T07:57:44.839Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:02:44.851Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:07:44.860Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:12:44.866Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:17:44.865Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:22:44.877Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:27:44.885Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:32:44.896Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:37:44.901Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:42:44.903Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:47:44.908Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:52:44.912Z"
+    },
+    {
+      "completedAt": "2026-03-04T08:57:44.913Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:02:44.921Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:07:44.922Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:12:44.928Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:17:44.938Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:22:44.943Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:27:44.958Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:32:44.964Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:37:44.976Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:42:44.986Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:47:44.995Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:52:44.997Z"
+    },
+    {
+      "completedAt": "2026-03-04T09:57:45.001Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:02:45.010Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:07:45.012Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:12:45.017Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:17:45.032Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:22:45.035Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:27:45.049Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:32:45.061Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:37:45.062Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:42:45.065Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:47:45.066Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:52:45.070Z"
+    },
+    {
+      "completedAt": "2026-03-04T10:57:45.085Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:02:45.099Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:07:45.105Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:12:45.111Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:17:45.117Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:22:45.133Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:27:45.135Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:32:45.151Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:37:45.152Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:42:45.165Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:47:45.180Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:52:45.182Z"
+    },
+    {
+      "completedAt": "2026-03-04T11:57:45.186Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:02:45.188Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:07:45.193Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:12:45.201Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:17:45.204Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:22:45.213Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:27:45.225Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:32:45.228Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:37:45.237Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:42:45.246Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:47:45.250Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:52:45.263Z"
+    },
+    {
+      "completedAt": "2026-03-04T12:57:45.271Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:02:45.274Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:07:45.282Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:12:45.287Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:17:45.302Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:22:45.305Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:27:45.309Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:32:45.322Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:37:45.337Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:42:45.348Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:47:45.359Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:52:45.366Z"
+    },
+    {
+      "completedAt": "2026-03-04T13:57:45.374Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:02:45.381Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:07:45.382Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:12:45.389Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:17:45.391Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:22:45.404Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:27:45.414Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:32:45.414Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:37:45.423Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:42:45.436Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:47:45.451Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:52:45.454Z"
+    },
+    {
+      "completedAt": "2026-03-04T14:57:45.462Z"
+    },
+    {
+      "completedAt": "2026-03-04T15:02:45.474Z"
+    },
+    {
+      "completedAt": "2026-03-04T15:07:45.486Z"
+    },
+    {
+      "completedAt": "2026-03-04T15:12:45.493Z"
+    },
+    {
+      "completedAt": "2026-03-04T15:17:45.505Z"
+    },
+    {
+      "completedAt": "2026-03-04T15:22:45.514Z"
+    },
+    {
+      "completedAt": "2026-03-04T15:27:45.525Z"
+    },
+    {
+      "completedAt": "2026-03-04T15:32:45.534Z"
+    },
+    {
+      "completedAt": "2026-03-04T15:37:45.547Z"
+    },
+    {
+      "completedAt": "2026-03-04T15:42:45.552Z"
+    }
+  ],
+  "progress": 2412.5,
+  "lastSaved": "2026-03-04T15:42:45.554Z",
+  "mode": "deep_learning_until_dawn"
+}

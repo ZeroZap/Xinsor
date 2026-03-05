@@ -1,0 +1,32 @@
+{
+  "name": "xinsor",
+  "version": "1.0.0",
+  "description": "XinSor - Sensor Integration AI Agents for ZeroZap",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test tests/",
+    "build": "echo No build step required",
+    "learn": "node src/auto-learn-enhanced.js",
+    "learn:full": "node src/learning-system.js",
+    "learn:yolo": "node src/auto-learn-enhanced.js",
+    "learn:hardware": "node src/hardware-learning.js",
+    "work": "node src/autonomous-work.js",
+    "solo": "node src/autonomous-work.js",
+    "project": "node src/project-learning.js",
+    "status": "node src/show-progress.js"
+  },
+  "keywords": ["discord", "ai-agents", "sensors", "zerozap", "xinsor", "automation", "learning"],
+  "author": "ZeroZap Team",
+  "license": "MIT",
+  "os": ["android", "linux", "darwin", "win32"],
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
