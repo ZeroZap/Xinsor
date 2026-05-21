@@ -1,1 +1,1 @@
-作为 XinYi 的自目录
+作为 XinYi 的子目录：优先采用 Git submodule 方式，保留 XinSor 独立知识库边界；下一步选择 AHT20 或 BMP280 做端到端样例。
