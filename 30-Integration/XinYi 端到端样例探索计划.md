@@ -108,8 +108,8 @@ drivers/sensors/bmp280/
 | 阶段 | 目标 | 完成判据 |
 |------|------|----------|
 | P0 | 确认样例型号和目录映射 | BMP280/AHT20 取舍明确，映射表更新 |
-| P1 | 补 BMP280 XinYi 驱动 README 草案 | 能直接指导建立 `drivers/sensors/bmp280/` |
-| P2 | 补 BMP280 bring-up checklist | 覆盖电源、总线、chip id、校准参数、数据合理性 |
+| P1 | 补 BMP280 XinYi 驱动 README 草案 | 已完成，见 [[10-Sensors/Pressure/BMP280-气压传感器|BMP280-气压传感器]] |
+| P2 | 补 BMP280 bring-up checklist | 已完成，见 [[集成测试指南]] |
 | P3 | 抽象同类模板 | 气压类传感器可复用字段进入模板 |
 | P4 | 扩展第二个样例 AHT20 | 验证温湿度命令式传感器流程 |
 
@@ -128,10 +128,9 @@ drivers/sensors/bmp280/
 
 ## 下一步动作
 
-1. 在 `BMP280-气压传感器.md` 增加 `XinYi 驱动 README 草案` 小节。
-2. 在 `集成测试指南.md` 增加 `BMP280 bring-up checklist`。
-3. 根据 BMP280 样例回头更新 `99-Templates/驱动开发笔记模板.md`。
-4. 再选择 AHT20 做第二个轻量闭环样例。
+1. 根据 BMP280 样例回头更新 `99-Templates/驱动开发笔记模板.md`。
+2. 再选择 AHT20 做第二个轻量闭环样例。
+3. 进入 XinYi 仓库后核对真实目录结构，再调整 `drivers/sensors/bmp280/` 映射。
 
 ---
 
