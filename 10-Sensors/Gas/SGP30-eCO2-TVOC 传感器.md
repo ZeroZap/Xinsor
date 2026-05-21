@@ -585,12 +585,115 @@ void SGP30_QuickTest(SGP30_Handle_t *handle) {
 
 ---
 
+## XinYi 气体类端到端样例计划
+
+> SGP30 用于验证 MOX 气体传感器在 XinYi 中的驱动闭环，重点覆盖预热、CRC、湿度补偿、baseline 保存/恢复和长期漂移管理。
+
+### 目标
+
+- 建立气体/空气质量类驱动样例，补齐 BMP280、AHT20、MPU6050 未覆盖的预热和基线管理场景。
+- 验证 eCO2/TVOC 双输出读取和 CRC 校验。
+- 验证湿度补偿输入路径。
+- 验证 baseline 的获取、保存、恢复策略。
+- 明确 eCO2 是估算值，不能替代 NDIR CO2 传感器。
+
+### 建议目录结构
+
+```text
+drivers/sensors/sgp30/
+├── sgp30.h
+├── sgp30.c
+├── sgp30_port.h
+├── sgp30_port.c
+└── README.md
+```
+
+### 公共接口清单
+
+| 接口 | 作用 | 备注 |
+|------|------|------|
+| `sgp30_init(config)` | 软复位、读取序列号、初始化空气质量测量 | 默认 I2C 地址 `0x58` |
+| `sgp30_read(data)` | 读取 eCO2/TVOC | 必须校验 CRC |
+| `sgp30_set_humidity(rh, temp)` | 设置湿度补偿 | 可由 AHT20/SHT30 提供输入 |
+| `sgp30_get_baseline(baseline)` | 读取 baseline | 建议定期保存 |
+| `sgp30_set_baseline(baseline)` | 上电后恢复 baseline | 需确认 baseline 来源有效 |
+| `sgp30_self_test()` | 执行 measure test 或最小通信/CRC 自检 | 可作为生产测试入口 |
+| `sgp30_deinit()` | 停止周期测量或释放资源 | 不建议频繁断电 |
+
+### 数据结构建议
+
+```c
+typedef struct {
+    uint8_t bus_id;
+    uint8_t i2c_addr;          // 0x58
+    uint16_t measure_period_ms;
+    bool humidity_comp_enable;
+    bool baseline_restore_enable;
+} sgp30_config_t;
+
+typedef struct {
+    uint32_t timestamp_ms;
+    uint16_t eco2_ppm;
+    uint16_t tvoc_ppb;
+    uint16_t baseline_eco2;
+    uint16_t baseline_tvoc;
+    uint8_t quality;
+    int32_t status;
+} sgp30_data_t;
+```
+
+### Bring-up 顺序
+
+1. 确认供电、电源纹波、I2C 上拉和空气接触开窗。
+2. I2C 扫描确认 `0x58` 有响应。
+3. 发送 soft reset，等待复位完成。
+4. 读取 serial id 或 feature set，验证通信和 CRC。
+5. 执行 `init_air_quality`。
+6. 进入预热阶段，前 10-15 分钟数据只作趋势参考。
+7. 每 1s 调用 `measure_air_quality`，读取 eCO2/TVOC 并校验 CRC。
+8. 如有温湿度传感器，周期性设置湿度补偿。
+9. 运行稳定后读取 baseline 并保存到非易失存储。
+10. 断电重启后恢复 baseline，比较恢复前后读数稳定时间。
+
+### 默认配置建议
+
+| 参数 | 建议值 | 说明 |
+|------|--------|------|
+| I2C 地址 | `0x58` | SGP30 固定地址 |
+| 测量周期 | 1s | 官方空气质量算法常用周期 |
+| 预热时间 | 10-15 分钟 | 首次读数不作为稳定结果 |
+| baseline 保存 | 每 12 小时或关机前 | 避免频繁写 Flash |
+| 湿度补偿 | 有温湿度数据时启用 | 提高不同环境下的一致性 |
+
+### 最小验收标准
+
+| 项目 | 判定 |
+|------|------|
+| 通信 | `0x58` I2C 地址稳定应答 |
+| CRC | serial id / measure data CRC 校验通过 |
+| 初始化 | `init_air_quality` 后可周期读取 |
+| 数据 | eCO2/TVOC 输出有变化，洁净空气下 eCO2 接近 400ppm 起点 |
+| baseline | 可读取、保存、恢复 baseline |
+| 补偿 | 湿度补偿接口可调用且不破坏测量流程 |
+| 长稳 | 连续运行 12-24 小时无异常，baseline 可定期保存 |
+
+### 与 SCD40 的分工
+
+| 样例 | 类型 | 重点 |
+|------|------|------|
+| SGP30 | MOX/eCO2+TVOC | 预热、CRC、湿度补偿、baseline、漂移 |
+| SCD40 | NDIR CO2 | 真实 CO2、ASC/FRC 校准、周期测量、通风结构 |
+
+---
+
 ## 🔗 相关链接
 
 - [[CCS811-eCO2 传感器]] - 竞品对比
 - [[MH-Z19-CO2 传感器]] - 红外 CO2 方案
 - [[BME680-气体传感器]] - 四合一方案
 - [[SHT30-温湿度传感器]] - 湿度补偿配合
+- [[SCD40-CO2 传感器]] - NDIR CO2 对照方案
+- [[30-Integration/XinYi 传感器驱动落地规范|XinYi 传感器驱动落地规范]]
 
 ---
 

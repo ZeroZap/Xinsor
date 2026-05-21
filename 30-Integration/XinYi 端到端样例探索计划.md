@@ -113,6 +113,7 @@ drivers/sensors/bmp280/
 | P3 | 抽象同类模板 | 已完成，见 [[99-Templates/驱动开发笔记模板|驱动开发笔记模板]] |
 | P4 | 扩展第二个样例 AHT20 | 已形成轻量闭环计划，见 [[10-Sensors/Temperature/AHT20-温湿度传感器|AHT20-温湿度传感器]] |
 | P5 | 扩展第三个样例 MPU6050 | 已形成 IMU 样例计划，见 [[10-Sensors/IMU/MPU6050-6 轴 IMU|MPU6050-6 轴 IMU]] |
+| P6 | 扩展气体类样例 SGP30/SCD40 | 已形成 MOX 与 NDIR 对照计划，见 [[10-Sensors/Gas/SGP30-eCO2-TVOC 传感器|SGP30]] / [[10-Sensors/Gas/SCD40-CO2 传感器|SCD40]] |
 
 ---
 
@@ -129,17 +130,20 @@ drivers/sensors/bmp280/
 
 ## 下一步动作
 
-1. 将 BMP280/AHT20/MPU6050 三类样例抽象为 XinYi 传感器驱动落地规范。
+1. 已抽象 [[XinYi 传感器驱动落地规范]]。
 2. 进入 XinYi 仓库后核对真实目录结构，再调整 `drivers/sensors/bmp280/`、`drivers/sensors/aht20/`、`drivers/sensors/mpu6050/` 映射。
-3. 下一批探索可补 `SGP30` 或 `SCD40`，覆盖气体传感器的预热、基线和校准策略。
+3. 下一批探索可补 `VL53L0X/VL53L1X`，覆盖光学窗口、目标反射率、ROI 和多传感器地址管理。
 
 ---
 
 ## 相关文档
 
 - [[XinSor 作为 XinYi 子目录]]
+- [[XinYi 传感器驱动落地规范]]
 - [[XinYi 传感器组件对接]]
 - [[集成测试指南]]
 - [[10-Sensors/Pressure/BMP280-气压传感器|BMP280-气压传感器]]
 - [[10-Sensors/Temperature/AHT20-温湿度传感器|AHT20-温湿度传感器]]
 - [[10-Sensors/IMU/MPU6050-6 轴 IMU|MPU6050-6 轴 IMU]]
+- [[10-Sensors/Gas/SGP30-eCO2-TVOC 传感器|SGP30-eCO2-TVOC 传感器]]
+- [[10-Sensors/Gas/SCD40-CO2 传感器|SCD40-CO2 传感器]]
