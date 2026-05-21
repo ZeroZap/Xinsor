@@ -110,8 +110,8 @@ drivers/sensors/bmp280/
 | P0 | 确认样例型号和目录映射 | BMP280/AHT20 取舍明确，映射表更新 |
 | P1 | 补 BMP280 XinYi 驱动 README 草案 | 已完成，见 [[10-Sensors/Pressure/BMP280-气压传感器|BMP280-气压传感器]] |
 | P2 | 补 BMP280 bring-up checklist | 已完成，见 [[集成测试指南]] |
-| P3 | 抽象同类模板 | 气压类传感器可复用字段进入模板 |
-| P4 | 扩展第二个样例 AHT20 | 验证温湿度命令式传感器流程 |
+| P3 | 抽象同类模板 | 已完成，见 [[99-Templates/驱动开发笔记模板|驱动开发笔记模板]] |
+| P4 | 扩展第二个样例 AHT20 | 已形成轻量闭环计划，见 [[10-Sensors/Temperature/AHT20-温湿度传感器|AHT20-温湿度传感器]] |
 
 ---
 
@@ -128,9 +128,9 @@ drivers/sensors/bmp280/
 
 ## 下一步动作
 
-1. 根据 BMP280 样例回头更新 `99-Templates/驱动开发笔记模板.md`。
-2. 再选择 AHT20 做第二个轻量闭环样例。
-3. 进入 XinYi 仓库后核对真实目录结构，再调整 `drivers/sensors/bmp280/` 映射。
+1. 进入 XinYi 仓库后核对真实目录结构，再调整 `drivers/sensors/bmp280/` 和 `drivers/sensors/aht20/` 映射。
+2. 选择第三个样例覆盖 IMU，建议 `MPU6050`，用于验证多轴数据、校准和中断场景。
+3. 将 BMP280/AHT20/MPU6050 三类样例抽象为 XinYi 传感器驱动落地规范。
 
 ---
 
