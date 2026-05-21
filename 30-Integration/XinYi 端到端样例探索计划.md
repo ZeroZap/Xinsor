@@ -112,6 +112,7 @@ drivers/sensors/bmp280/
 | P2 | 补 BMP280 bring-up checklist | 已完成，见 [[集成测试指南]] |
 | P3 | 抽象同类模板 | 已完成，见 [[99-Templates/驱动开发笔记模板|驱动开发笔记模板]] |
 | P4 | 扩展第二个样例 AHT20 | 已形成轻量闭环计划，见 [[10-Sensors/Temperature/AHT20-温湿度传感器|AHT20-温湿度传感器]] |
+| P5 | 扩展第三个样例 MPU6050 | 已形成 IMU 样例计划，见 [[10-Sensors/IMU/MPU6050-6 轴 IMU|MPU6050-6 轴 IMU]] |
 
 ---
 
@@ -128,9 +129,9 @@ drivers/sensors/bmp280/
 
 ## 下一步动作
 
-1. 进入 XinYi 仓库后核对真实目录结构，再调整 `drivers/sensors/bmp280/` 和 `drivers/sensors/aht20/` 映射。
-2. 选择第三个样例覆盖 IMU，建议 `MPU6050`，用于验证多轴数据、校准和中断场景。
-3. 将 BMP280/AHT20/MPU6050 三类样例抽象为 XinYi 传感器驱动落地规范。
+1. 将 BMP280/AHT20/MPU6050 三类样例抽象为 XinYi 传感器驱动落地规范。
+2. 进入 XinYi 仓库后核对真实目录结构，再调整 `drivers/sensors/bmp280/`、`drivers/sensors/aht20/`、`drivers/sensors/mpu6050/` 映射。
+3. 下一批探索可补 `SGP30` 或 `SCD40`，覆盖气体传感器的预热、基线和校准策略。
 
 ---
 
@@ -141,3 +142,4 @@ drivers/sensors/bmp280/
 - [[集成测试指南]]
 - [[10-Sensors/Pressure/BMP280-气压传感器|BMP280-气压传感器]]
 - [[10-Sensors/Temperature/AHT20-温湿度传感器|AHT20-温湿度传感器]]
+- [[10-Sensors/IMU/MPU6050-6 轴 IMU|MPU6050-6 轴 IMU]]

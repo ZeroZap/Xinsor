@@ -1,1 +1,1 @@
-作为 XinYi 的子目录：优先采用 Git submodule 方式，保留 XinSor 独立知识库边界；BMP280 端到端样例、驱动模板沉淀、AHT20 轻量闭环计划已完成。下一步探索 MPU6050 作为 IMU 样例，覆盖多轴数据、校准和中断场景。
+作为 XinYi 的子目录：优先采用 Git submodule 方式，保留 XinSor 独立知识库边界；BMP280、AHT20、MPU6050 三类端到端样例计划已完成。下一步抽象 XinYi 传感器驱动落地规范，或探索 SGP30/SCD40 气体类样例。

@@ -618,6 +618,111 @@ WHO_AM_I: 0x68 ✅
 
 ---
 
+## XinYi IMU 端到端样例计划
+
+> MPU6050 用于验证 XinYi 中 IMU 类驱动的通用闭环，重点覆盖多轴数据、量程配置、零偏校准、中断和低功耗运动检测。
+
+### 目标
+
+- 形成 IMU 类传感器的第三个端到端样例，与 BMP280、AHT20 形成三类互补。
+- 验证 6 轴数据读取：加速度、陀螺仪、温度。
+- 验证动态量程配置和灵敏度换算。
+- 验证静态零偏校准流程。
+- 验证 INT 引脚的运动检测/数据就绪中断接入方式。
+
+### 建议目录结构
+
+```text
+drivers/sensors/mpu6050/
+├── mpu6050.h
+├── mpu6050.c
+├── mpu6050_port.h
+├── mpu6050_port.c
+└── README.md
+```
+
+### 公共接口清单
+
+| 接口 | 作用 | 备注 |
+|------|------|------|
+| `mpu6050_init(config)` | 初始化设备、唤醒、配置时钟和默认量程 | 默认地址 `0x68`，AD0 可切 `0x69` |
+| `mpu6050_read(data)` | 读取 accel/gyro/temp 物理量 | 建议一次读取 14 字节 burst 数据 |
+| `mpu6050_configure(param, value)` | 配置量程、DLPF、ODR、低功耗模式 | 参数应覆盖 accel/gyro range |
+| `mpu6050_calibrate(calib)` | 静态采样计算零偏 | 至少支持 gyro 零偏和 accel Z 轴 1g 修正 |
+| `mpu6050_self_test()` | 验证 WHO_AM_I、读数范围和静态姿态 | 可先做软件自检，不依赖官方 self-test |
+| `mpu6050_deinit()` | 进入 sleep 或释放总线资源 | 低功耗场景必要 |
+
+### 数据结构建议
+
+```c
+typedef struct {
+    uint8_t bus_id;
+    uint8_t i2c_addr;        // 0x68 or 0x69
+    uint8_t accel_range;     // ±2/4/8/16g
+    uint8_t gyro_range;      // ±250/500/1000/2000 dps
+    uint16_t sample_rate_hz;
+    uint8_t dlpf;
+    bool int_enable;
+} mpu6050_config_t;
+
+typedef struct {
+    uint32_t timestamp_ms;
+    float accel_g[3];
+    float gyro_dps[3];
+    float temperature_c;
+    int16_t raw_accel[3];
+    int16_t raw_gyro[3];
+    uint8_t quality;
+} mpu6050_data_t;
+```
+
+### Bring-up 顺序
+
+1. 确认 VDD、VLOGIC、REGOUT 电容和 I2C 上拉。
+2. I2C 扫描确认 `0x68` 或 `0x69`。
+3. 读取 `WHO_AM_I`，期望值 `0x68`。
+4. 清除 `PWR_MGMT_1.SLEEP`，等待唤醒。
+5. 配置时钟源、DLPF、采样率、加速度计量程和陀螺仪量程。
+6. 连续读取 14 字节数据，确认原始值非全 0/满量程。
+7. 静止放置时，检查加速度模长约 `1g`，陀螺仪接近 `0 dps`。
+8. 做 200-1000 次静态采样，计算 gyro offset 和 accel offset。
+9. 配置 INT 引脚，验证数据就绪或运动检测事件。
+10. 切换 sleep/cycle mode，验证低功耗路径。
+
+### 默认配置建议
+
+| 参数 | 建议值 | 说明 |
+|------|--------|------|
+| I2C 地址 | `0x68` 优先 | AD0 接地常见 |
+| 加速度量程 | ±2g | 静态姿态和轻运动优先 |
+| 陀螺仪量程 | ±250 dps | 降低噪声，提高分辨率 |
+| DLPF | 约 42-184Hz | 先保证稳定读数，再按应用调节 |
+| 采样率 | 50-100Hz | 一般姿态应用足够 |
+| 中断 | 先 data ready，后 motion detect | 分阶段验证 |
+
+### 最小验收标准
+
+| 项目 | 判定 |
+|------|------|
+| 通信 | 能稳定读取 `WHO_AM_I=0x68` |
+| 唤醒 | 清除 sleep 后数据寄存器有变化 |
+| 加速度 | 静止时三轴模长约 `1g` |
+| 陀螺仪 | 静止时三轴接近 `0 dps`，可通过 offset 修正 |
+| 量程 | 切换 accel/gyro range 后灵敏度换算正确 |
+| 校准 | 静态校准后零偏明显降低 |
+| 中断 | INT 引脚可触发数据就绪或运动事件 |
+| 低功耗 | sleep/cycle mode 可进入并唤醒 |
+
+### 与前两个样例的分工
+
+| 样例 | 代表类型 | 重点 |
+|------|----------|------|
+| BMP280 | 气压/补偿算法类 | 校准参数、补偿算法、配置项 |
+| AHT20 | 简单命令式温湿度类 | I2C 命令流、busy 轮询、轻量闭环 |
+| MPU6050 | IMU 多轴运动类 | 多轴 burst 读取、量程、校准、中断、低功耗 |
+
+---
+
 ## 🔗 相关链接
 
 - [[ICM20948-9 轴 IMU]] - MPU6050 升级版，增加磁力计
@@ -625,6 +730,7 @@ WHO_AM_I: 0x68 ✅
 - [[BNO055-智能 IMU]] - 内置传感器融合，直接输出姿态
 - [[I2C 协议深度解析]] - I2C 通信协议详解
 - [[传感器融合与卡尔曼滤波]] - 多传感器数据融合算法
+- [[30-Integration/XinYi 端到端样例探索计划|XinYi 端到端样例探索计划]]
 
 ---
 
