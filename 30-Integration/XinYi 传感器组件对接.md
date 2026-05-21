@@ -263,6 +263,7 @@ npm run logs:export -- --format=json
 ## 7. 相关文档
 
 - [[XinSor 作为 XinYi 子目录]]
+- [[XinYi 端到端样例探索计划]]
 - [[99-Templates/驱动开发笔记模板|驱动开发笔记模板]]
 - [[20-Reference-Designs/驱动模板/驱动开发指南|驱动开发指南]]
 - [[集成测试指南]]
