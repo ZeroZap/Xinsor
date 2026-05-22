@@ -114,6 +114,7 @@ drivers/sensors/bmp280/
 | P4 | 扩展第二个样例 AHT20 | 已形成轻量闭环计划，见 [[10-Sensors/Temperature/AHT20-温湿度传感器|AHT20-温湿度传感器]] |
 | P5 | 扩展第三个样例 MPU6050 | 已形成 IMU 样例计划，见 [[10-Sensors/IMU/MPU6050-6 轴 IMU|MPU6050-6 轴 IMU]] |
 | P6 | 扩展气体类样例 SGP30/SCD40 | 已形成 MOX 与 NDIR 对照计划，见 [[10-Sensors/Gas/SGP30-eCO2-TVOC 传感器|SGP30]] / [[10-Sensors/Gas/SCD40-CO2 传感器|SCD40]] |
+| P7 | 扩展光学/距离类样例 VL53L0X/VL53L1X | 已形成基础 ToF 与长距离/ROI 对照计划，见 [[10-Sensors/Optical/VL53L0X-ToF 测距|VL53L0X]] / [[10-Sensors/Optical/VL53L1X-ToF 测距|VL53L1X]] |
 
 ---
 
@@ -132,7 +133,7 @@ drivers/sensors/bmp280/
 
 1. 已抽象 [[XinYi 传感器驱动落地规范]]。
 2. 进入 XinYi 仓库后核对真实目录结构，再调整 `drivers/sensors/bmp280/`、`drivers/sensors/aht20/`、`drivers/sensors/mpu6050/` 映射。
-3. 下一批探索可补 `VL53L0X/VL53L1X`，覆盖光学窗口、目标反射率、ROI 和多传感器地址管理。
+3. 下一步可做阶段总结，或补 `INA219` 电源监测类样例，覆盖分流电阻、量程校准和功耗统计。
 
 ---
 
@@ -147,3 +148,5 @@ drivers/sensors/bmp280/
 - [[10-Sensors/IMU/MPU6050-6 轴 IMU|MPU6050-6 轴 IMU]]
 - [[10-Sensors/Gas/SGP30-eCO2-TVOC 传感器|SGP30-eCO2-TVOC 传感器]]
 - [[10-Sensors/Gas/SCD40-CO2 传感器|SCD40-CO2 传感器]]
+- [[10-Sensors/Optical/VL53L0X-ToF 测距|VL53L0X-ToF 测距]]
+- [[10-Sensors/Optical/VL53L1X-ToF 测距|VL53L1X-ToF 测距]]

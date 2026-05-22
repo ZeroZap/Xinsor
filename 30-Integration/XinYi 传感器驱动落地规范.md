@@ -148,7 +148,7 @@ typedef struct {
 | 命令式测量类 | trigger、busy、timeout、CRC/状态位 | AHT20 |
 | 多轴 IMU 类 | burst read、坐标系、量程、零偏、中断 | MPU6050 |
 | 气体/空气质量类 | 预热、baseline、温湿度补偿、寿命、漂移、ASC/FRC | SGP30/SCD40 |
-| 光学/距离类 | 光学窗口、环境光、目标反射率、多传感器地址 | VL53L0X/VL53L1X |
+| 光学/距离类 | 光学窗口、环境光、目标反射率、多传感器地址、ROI、crosstalk | VL53L0X/VL53L1X |
 
 ---
 
@@ -181,7 +181,8 @@ typedef struct {
 
 1. 已补 `SGP30` 气体类样例计划和 `SCD40` NDIR CO2 对照计划。
 2. 已将气体类 checklist 合并到 `集成测试指南.md`。
-3. 下一步可探索光学/距离类样例，建议 `VL53L0X/VL53L1X`，覆盖光学窗口、反射率、ROI 和多传感器地址管理。
+3. 已补 `VL53L0X` 基础 ToF 样例计划和 `VL53L1X` 长距离/ROI 对照计划。
+4. 下一步可收敛为阶段总结，或选择 `INA219` 作为电源监测类样例。
 
 ---
 
@@ -193,3 +194,5 @@ typedef struct {
 - [[99-Templates/驱动开发笔记模板|驱动开发笔记模板]]
 - [[10-Sensors/Gas/SGP30-eCO2-TVOC 传感器|SGP30-eCO2-TVOC 传感器]]
 - [[10-Sensors/Gas/SCD40-CO2 传感器|SCD40-CO2 传感器]]
+- [[10-Sensors/Optical/VL53L0X-ToF 测距|VL53L0X-ToF 测距]]
+- [[10-Sensors/Optical/VL53L1X-ToF 测距|VL53L1X-ToF 测距]]

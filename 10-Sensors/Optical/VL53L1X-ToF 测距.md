@@ -49,6 +49,42 @@
 
 ---
 
+## XinYi 光学/距离类对照计划
+
+**VL53L1X** 用于作为 VL53L0X 的升级对照样例：VL53L0X 负责基础 ToF 测距闭环，VL53L1X 负责更长距离、ROI 和更复杂的标定策略。
+
+### 建议接口
+
+| 接口 | 作用 | 备注 |
+|------|------|------|
+| `vl53l1x_init(config)` | 初始化并加载推荐配置 | 默认 I2C 地址同为 `0x29` |
+| `vl53l1x_read(data)` | 读取距离和 range status | 必须带质量判断 |
+| `vl53l1x_set_distance_mode(mode)` | 配置 short/medium/long | 影响量程、环境光容忍度和耗时 |
+| `vl53l1x_set_timing_budget(ms)` | 配置测量时间预算 | 影响精度和速率 |
+| `vl53l1x_set_roi(roi)` | 配置 ROI | 区域检测和抗干扰关键 |
+| `vl53l1x_calibrate(calib)` | offset/crosstalk 校准 | 覆盖玻璃或结构变化后需要 |
+
+### Bring-up 重点
+
+1. 先按 VL53L0X 的基础 ToF 流程验证通信、XSHUT 和默认地址。
+2. 使用 short/medium/long 距离模式分别测固定目标。
+3. 记录不同目标颜色、材质、反射率下的有效量程。
+4. 配置 ROI，验证区域变化是否影响测距结果。
+5. 增加覆盖玻璃后做 offset/crosstalk 评估。
+6. 强环境光下记录 range status、signal 和有效距离变化。
+
+### 最小验收标准
+
+| 项目 | 判定 |
+|------|------|
+| 距离模式 | short/medium/long 切换后量程和稳定性符合预期 |
+| ROI | ROI 配置可影响检测区域 |
+| 标定 | offset/crosstalk 参数有明确记录和应用条件 |
+| 质量 | 弱反射/强环境光/覆盖玻璃下能输出可解释状态 |
+| 多设备 | 与 VL53L0X 一样支持 XSHUT 地址管理 |
+
+---
+
 ## 框架适配记录
 
 | 框架 | 状态 | 备注 |
@@ -65,3 +101,4 @@
 - [[光学传感器索引]]
 - [[VL53L0X-ToF 测距]]
 - [[10-Sensors/传感器总目录|传感器总目录]]
+- [[30-Integration/XinYi 传感器驱动落地规范|XinYi 传感器驱动落地规范]]

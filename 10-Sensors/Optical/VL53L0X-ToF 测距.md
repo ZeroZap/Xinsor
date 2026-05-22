@@ -514,12 +514,113 @@ void VL53L0X_QuickTest(VL53L0X_Handle_t *handle) {
 
 ---
 
+## XinYi 光学/距离类端到端样例计划
+
+> VL53L0X 用于验证 ToF 距离传感器在 XinYi 中的基础闭环，重点覆盖光学窗口、目标反射率、range status、单次/连续测量和多传感器 XSHUT 地址管理。
+
+### 目标
+
+- 建立光学/距离类驱动样例，补齐气压、温湿度、IMU、气体类未覆盖的光学结构问题。
+- 验证单次测距、连续测距和中断状态读取。
+- 验证测距状态、信号强度、环境光和 sigma 等质量指标。
+- 验证多 VL53L0X 共总线时的 XSHUT 分批上电和改地址流程。
+- 明确目标反射率、覆盖玻璃、环境光对测距的影响。
+
+### 建议目录结构
+
+```text
+drivers/sensors/vl53l0x/
+├── vl53l0x.h
+├── vl53l0x.c
+├── vl53l0x_port.h
+├── vl53l0x_port.c
+└── README.md
+```
+
+### 公共接口清单
+
+| 接口 | 作用 | 备注 |
+|------|------|------|
+| `vl53l0x_init(config)` | 初始化设备、加载默认测距配置 | 默认 I2C 地址 `0x29` |
+| `vl53l0x_read(data)` | 读取距离和质量指标 | 输出 distance/status/signal/ambient/sigma |
+| `vl53l0x_configure(param, value)` | 配置测量模式、timing budget、阈值等 | 第一版可先支持 single/continuous |
+| `vl53l0x_set_address(addr)` | 修改 I2C 地址 | 多传感器场景必须配合 XSHUT |
+| `vl53l0x_self_test()` | 验证通信、测距状态和合理距离 | 需准备固定距离目标 |
+| `vl53l0x_deinit()` | 停止测量或拉低 XSHUT | 低功耗和多设备管理需要 |
+
+### 数据结构建议
+
+```c
+typedef struct {
+    uint8_t bus_id;
+    uint8_t i2c_addr;          // default 0x29
+    uint8_t xshut_pin;
+    uint8_t mode;              // single / continuous
+    uint16_t timing_budget_ms;
+    uint16_t inter_measure_ms;
+} vl53l0x_config_t;
+
+typedef struct {
+    uint32_t timestamp_ms;
+    uint16_t distance_mm;
+    uint8_t range_status;
+    float signal_rate;
+    float ambient_rate;
+    uint16_t sigma;
+    uint8_t quality;
+} vl53l0x_data_t;
+```
+
+### Bring-up 顺序
+
+1. 确认 VDD/VDDIO、I2C 上拉、XSHUT 默认电平和光学窗口清洁。
+2. 拉高 XSHUT，等待设备启动。
+3. I2C 扫描确认默认地址 `0x29`。
+4. 读取设备 ID 或关键识别寄存器，确认通信正常。
+5. 写入 ST 推荐初始化序列或采用官方 API 移植层。
+6. 启动单次测量，等待数据就绪或中断。
+7. 读取距离、range status、signal、ambient、sigma。
+8. 使用固定距离目标验证 100mm、300mm、1000mm 等点位。
+9. 切换连续测量模式，验证采样周期和数据稳定性。
+10. 如有多传感器，逐个 XSHUT 上电并改地址。
+
+### 默认配置建议
+
+| 参数 | 建议值 | 说明 |
+|------|--------|------|
+| I2C 地址 | `0x29` | 默认地址，多传感器需改地址 |
+| 模式 | single 起步，稳定后 continuous | 降低 bring-up 难度 |
+| timing budget | 30-50ms 起步 | 平衡速度和稳定性 |
+| 采样周期 | 10-20Hz | 避障/液位常用起点 |
+| 质量判断 | 必须检查 range status | 不只看 distance 数值 |
+
+### 最小验收标准
+
+| 项目 | 判定 |
+|------|------|
+| 通信 | `0x29` 地址稳定应答 |
+| 初始化 | 默认配置后可触发单次测量 |
+| 数据 | 固定目标距离读数随距离变化，误差在应用可接受范围 |
+| 质量 | range status 可区分有效、超量程、弱信号等状态 |
+| 光学 | 遮挡、黑色目标、强环境光会体现为质量下降 |
+| 多设备 | 多个传感器可通过 XSHUT 分配不同地址 |
+
+### 与 VL53L1X 的分工
+
+| 样例 | 类型 | 重点 |
+|------|------|------|
+| VL53L0X | 基础 ToF 测距 | 单次/连续测量、质量指标、多地址管理 |
+| VL53L1X | 长距离/ROI ToF | long/medium/short 模式、ROI、crosstalk/offset 校准 |
+
+---
+
 ## 🔗 相关链接
 
 - [[VL53L1X-ToF 测距]] - 升级版，4m 量程
 - [[APDS9960-手势传感器]] - 多合一光学传感器
 - [[TCS34725-RGB 颜色]] - 颜色传感器
 - [[I2C 协议深度解析]] - I2C 通信协议
+- [[30-Integration/XinYi 传感器驱动落地规范|XinYi 传感器驱动落地规范]]
 
 ---
 
