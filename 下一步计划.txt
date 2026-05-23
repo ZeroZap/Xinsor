@@ -1,1 +1,1 @@
-作为 XinYi 的子目录：优先采用 Git submodule 方式，保留 XinSor 独立知识库边界；BMP280、AHT20、MPU6050、SGP30/SCD40、VL53L0X/VL53L1X 样例计划和 XinYi 传感器驱动落地规范已完成。下一步做阶段总结，或探索 INA219 电源监测类样例。
+作为 XinYi 的子目录：优先采用 Git submodule 方式，保留 XinSor 独立知识库边界；BMP280、AHT20、MPU6050、SGP30/SCD40、VL53L0X/VL53L1X、INA219 样例计划和 XinYi 传感器驱动落地规范已完成。下一步做阶段总结，形成 XinSor -> XinYi 驱动落地路线图。
