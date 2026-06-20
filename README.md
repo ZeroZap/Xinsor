@@ -16,6 +16,7 @@ XinSor 是 ZeroZap 组织的传感器知识库，使用 **Obsidian** 构建，�
 - 驱动开发规范和模板
 - 硬件调试手册和参考设计
 - 与 XinYi 嵌入式框架的集成文档
+- ESE / Maker 工程化提炼：选型、bring-up、驱动、验证闭环
 
 ---
 
@@ -38,6 +39,7 @@ Xinsor/
 │   └── 调试笔记/               # 调试技巧汇总
 ├── 30-Integration/              # XinYi 集成文档
 ├── 40-Datasheets/              # 数据手册
+├── 50-ESE-Maker/               # ESE / Maker 工程化提炼
 ├── 99-Archives/                # 历史归档
 ├── 99-Templates/               # 文档模板
 ├── .obsidian/                  # Obsidian 配置
